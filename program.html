@@ -40,39 +40,8 @@
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top d-flex align-items-center">
-    <div class="container d-flex align-items-center justify-content-between">
-
-      <div class="logo">
-<!--        <h1 class="text-light"><a href="index.html"><span>VEM2022</span></a></h1>-->
-        <!-- Uncomment below if you prefer to use an image logo -->
-         <!-- <a href="index.html"><img src="assets/img/vem_color.png" alt="" class="img-fluid"></a> -->
-         <a href="index.html"
-                        ><img
-                            src="assets/img/vem2026-h.png"
-                            alt=""
-                            class="img-fluid"
-                    /></a>
-      </div>
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <ul>
-            <li><a class="nav-link scrollto " href="index.html">Home</a></li>
-            <li><a class="nav-link scrollto" href="attending.html">Attending</a></li>
-            <li><a class="nav-link scrollto" href="callForPapers.html">Call for Papers</a></li>
-            <li><a class="nav-link scrollto" href="keynotes.html">Keynote</a></li>
-            <li><a class="nav-link scrollto active" href="program.html">Agenda</a></li>
-            <li><a class="nav-link scrollto" href="acceptedPapers.html">Accepted Papers</a></li>
-            <li><a class="nav-link scrollto" href="organization.html">Organization</a></li>
-            <li><a class="nav-link scrollto" href="previousEditions.html">Previous Editions</a></li>
-          </ul>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-    </div>
-  </header><!-- End Header -->
+  <div id="header-placeholder"></div>
+  <!-- End Header -->
 
   <main id="main">
   <!-- ======= Services Section ======= -->
@@ -317,12 +286,27 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
-  <!-- W3C JS -->
-  <script src="assets/js/w3c.js"></script>
+  <!-- Destaque dinâmico da escolha selecionada no menu -->
+  <script src="assets/js/navbar.js"></script>
+
   <script>
-    includeHTML();//w3c.js
+    fetch("components/header.html")
+      .then(res => res.text())
+      .then(data => {
+          document.getElementById("header-placeholder").innerHTML = data;
+          setActiveMenu();
+          initMobileMenu();
+      });
+
+      fetch("components/footer.html")
+        .then(res => res.text())
+        .then(data => {
+            document.querySelector("[w3-include-html]").innerHTML = data;
+        });
   </script>
 
+  <!-- Leaflet Map -->
+  <script src="assets/js/map.js"></script>
 </body>
 
 </html>
